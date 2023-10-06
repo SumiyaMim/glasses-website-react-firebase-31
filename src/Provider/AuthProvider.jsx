@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
       return signInWithEmailAndPassword(auth, email, password);
     }
 
-    // update yser profile
+    // update user profile
     const handleUpdateProfile = (name, photo) => {
       return updateProfile(auth.currentUser, {
           displayName: name, photoURL: photo
