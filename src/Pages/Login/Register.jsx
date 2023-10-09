@@ -10,35 +10,34 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // get field values 
+    
+        // Get field values
         const name = event.target.name.value;
         const email = event.target.email.value;
         const image = event.target.image.value;
         const password = event.target.password.value;
         console.log(name, email, image, password);
-
-        // password validation 
+    
+        // Password validation
         if (password.length < 6) {
             toast.error('Password must be at least 6 characters');
             return;
         }
-
-        // creating a new user
+    
+        // Creating a new user
         createUser(email, password)
-        .then(res => {
-            handleUpdateProfile(name, image)
-                .then(() => {
-                    toast.success('User created successfully');
-                    navigate('/')
-
-                })
-        })
-        .catch(error => {
-            toast.error(error.message)
-        })
+            .then((res) => {
+                handleUpdateProfile(name, image)
+                    .then(() => {
+                        toast.success('User created successfully');
+                        navigate('/');
+                    })
+            })
+            .catch((error) => {
+                // Handle other errors here
+                toast.error(error.message);
+            });
     }
-
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Menus = () => {
@@ -16,6 +16,13 @@ const Menus = () => {
 const NavBar = () => {
 
     const { user, logOut } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        logOut(); 
+        navigate('/login'); 
+      };
 
     return (
         <>
@@ -51,7 +58,7 @@ const NavBar = () => {
                                     <button className="btn btn-sm  btn-ghost">{user.displayName}</button>
                                 </li>
                                 <li>
-                                    <button onClick={logOut} className="btn btn-sm  btn-ghost">Logout</button>
+                                    <button onClick={handleLogOut} className="btn btn-sm  btn-ghost">Logout</button>
                                 </li>
                             </ul>
                         </div>
